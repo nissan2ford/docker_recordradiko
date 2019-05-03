@@ -1,0 +1,20 @@
+FROM ubuntu
+MAINTAINER nissan2ford <nissan2ford-reg1@yahoo.co.jp>
+RUN apt-get update
+RUN apt-get install -y apt-utils
+RUN apt-get update
+RUN apt-get install -y rtmpdump swftools libxml2-utils ffmpeg libavcodec-extra wget
+RUN apt-get update
+RUN apt-get install -y python-setuptools
+RUN apt-get update
+RUN apt-get install -y python-pip
+RUN pip install awscli
+RUN mkdir /root/.aws
+ADD ./aws/config /root/.aws/config
+ADD ./aws/credentials /root/.aws/credentials
+ADD rec_radiko.sh /root/rec_radiko.sh
+ADD rec_futurescape.sh /root/rec_futurescape.sh
+RUN cd ~/
+RUN chmod 755 ~/rec_radiko.sh
+RUN chmod 755 ~/rec_futurescape.sh
+
